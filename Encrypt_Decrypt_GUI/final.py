@@ -8,7 +8,9 @@ class CaesarCipher(tk.Frame):
         self.colour2 = '#fbf5f3'
         self.colour3 = '#e28413'
 
-        self.letters = 'abcdefghijklmnopqrstuvwxyz'
+        # Include all letters, numbers, and common special characters
+        self.letters = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ' + \
+                       ' !"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
         self.num_letters = len(self.letters)
 
         super().__init__(root, bg=self.colour1)
@@ -119,7 +121,7 @@ class CaesarCipher(tk.Frame):
 
     def encrypt_decrypt(self, text, mode, key):
         result = []
-        for char in text.lower():
+        for char in text:
             if char in self.letters:
                 old_index = self.letters.index(char)
                 if mode == 'e':
